@@ -16,21 +16,16 @@
 
 <div class="container-fluid">
 
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <ul class="nav navbar-nav">
-            <li><a href="projects.php">Projecten</a></li>
-            <li><a href="members.php">Deelnemers</a></li>
-            <li><a href="project_new.php">Nieuw Project</a></li>
-            <li><a href="member_new.php">Nieuwe Deelnemer</a></li>
-        </ul>
-    </div>
-</nav>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a href="projects.php">Projecten</a></li>
+                <li><a href="members.php">Deelnemers</a></li>
+                <li><a href="project_new.php">Nieuw Project</a></li>
+                <li><a href="member_new.php">Nieuwe Deelnemer</a></li>
+            </ul>
+        </div>
+    </nav>
 
 
 
-<br><br>
-
-
-<!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

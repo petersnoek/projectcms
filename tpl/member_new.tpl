@@ -1,5 +1,7 @@
 <!-- INCLUDE BLOCK : header -->
 
+<!-- INCLUDE BLOCK : alert -->
+
 <form method="POST" >
     <strong> Voornaam:</strong><br>
     <input type="text" name="voornaam" value="">
@@ -31,6 +33,4 @@
     <input type="submit" name="submit" value="Submit">
 </form>
 
-</div>
-</body>
-</html>
+<!-- INCLUDE BLOCK : footer -->
