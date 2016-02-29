@@ -1,5 +1,5 @@
 <?php $pagetitle = 'Nieuw Project'; ?>
-<?php include 'Include/header.php'; ?>
+<?php include 'inc/header.tpl'; ?>
 
 
 <form method="POST" >
@@ -36,15 +36,15 @@
 <?php
 	if ( isset ($_POST['submit']))
 	{
-	$titel = mysql_real_escape_string($_POST['titel']);
-	$opdrachtgever = mysql_real_escape_string($_POST['opdrachtgever']);
-	$bedrijf = mysql_real_escape_string($_POST['bedrijf']);
-	$telefoon = mysql_real_escape_string($_POST['telefoon']);
-	$email = mysql_real_escape_string($_POST['email']);
-	$adres = mysql_real_escape_string($_POST['adres']);
-	$pc = mysql_real_escape_string($_POST['pc']);
-	$plaats = mysql_real_escape_string($_POST['plaats']);
-	$omschrijving = mysql_real_escape_string($_POST['omschrijving']);
+	$titel = mysqli_real_escape_string($_POST['titel']);
+	$opdrachtgever = mysqli_real_escape_string($_POST['opdrachtgever']);
+	$bedrijf = mysqli_real_escape_string($_POST['bedrijf']);
+	$telefoon = mysqli_real_escape_string($_POST['telefoon']);
+	$email = mysqli_real_escape_string($_POST['email']);
+	$adres = mysqli_real_escape_string($_POST['adres']);
+	$pc = mysqli_real_escape_string($_POST['pc']);
+	$plaats = mysqli_real_escape_string($_POST['plaats']);
+	$omschrijving = mysqli_real_escape_string($_POST['omschrijving']);
 	$error = false;
 
 	if ( empty($titel) )
@@ -56,23 +56,23 @@
 	if ( $error == false )
 	{
 	// create mysql connection or show error
-	$link = mysql_connect('localhost', 'root', 'usbw');
+	$link = mysqli_connect('localhost', 'cms', 'Studentje1');
 	if (!$link) {
-	die('<br>Could not connect: ' . mysql_error());
+	die('<br>Could not connect: ' . mysqli_error());
 	}
 
 		  // connect to database
-		  mysql_select_db('ProjectCMS', $link);
+		  mysqli_select_db('ProjectCMS', $link);
 
 
 		  $query = "INSERT INTO projects (titel, opdrachtgever, bedrijf, telefoon, email, adres, plaats, pc, omschrijving) VALUES ('$titel', '$opdrachtgever', '$bedrijf', '$telefoon', '$email', '$adres', '$plaats', '$pc', '$omschrijving')";
-		  $result = mysql_query($query, $link);
+		  $result = mysqli_query($query, $link);
 		  if (!$result) {
-			  die('<br>Invalid query: [' . $query . '] error: ' . mysql_error());
+			  die('<br>Invalid query: [' . $query . '] error: ' . mysqli_error());
 		  }
 
 		  // close link
-		  mysql_close($link);
+		  mysqli_close($link);
 
 		  // decide what to do
 		  if ( $result == true )

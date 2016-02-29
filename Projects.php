@@ -1,21 +1,16 @@
 <?php $pagetitle = 'Projecten'; ?>
-<?php include 'Include/header.php'; ?>
+<?php include 'inc/header.tpl'; ?>
 
 <?php
-// create mysql connection or show error
- $link = mysql_connect('localhost', 'root', 'usbw');
-if (!$link) {
-die('<br>Could not connect: ' . mysql_error());
-}
 
-// connect to database
-mysql_select_db('projectcms', $link);
+// connect to database or show error
+include 'inc/cnx.php';
 
 // voer de query uit of toon een foutbericht
 $query = "SELECT * FROM projects ";
-$result = mysql_query($query, $link);
+$result = mysqli_query($query, $link);
 if (!$result) {
-die('<br>Invalid query: ' . mysql_error());
+die('<br>Invalid query: ' . mysqli_error());
 }
 ?>
 
@@ -29,7 +24,7 @@ die('<br>Invalid query: ' . mysql_error());
 		 
 <?php 
 	// Start looping table row
-	while($rows = mysql_fetch_array($result)){
+	while($rows = mysqli_fetch_array($result)){
 ?>
 	<tr>
 		<td align="center"><?php echo $rows['id']; ?></td>
@@ -43,5 +38,5 @@ die('<br>Invalid query: ' . mysql_error());
 <?php
 // Exit looping and close connection 
 }
-mysql_close();
+mysqli_close();
 ?>
