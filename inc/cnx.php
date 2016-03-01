@@ -1,5 +1,5 @@
 <?php
-    $mysqlhost = '127.0.0.1';
+    $mysqlhost = 'localhost';
     $mysqldb = 'projectcms';
     $mysqluser = 'cms';
     $mysqlpass = 'Studentje1';
@@ -14,6 +14,3 @@
         echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
         exit;
     }
-
-    // connect to database
-    mysqli_select_db($link, 'ProjectCMS');
