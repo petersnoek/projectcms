@@ -5,7 +5,7 @@ if ( ! isset ($_POST['submit'])) {
     // nothing submitted
     include("inc/class.TemplatePower.inc.php");
     $tpl = new TemplatePower("tpl/member_new.tpl");
-    $tpl->assignInclude("header", "tpl/header.tpl");
+    $tpl->assignInclude("header", "tpl/header.tpl.html");
     $tpl->prepare();
     $tpl->assign('pagetitle', 'Nieuwe deelnemer');
     $tpl->printToScreen();

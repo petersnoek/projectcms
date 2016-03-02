@@ -1,5 +1,5 @@
 <?php $pagetitle = 'Projecten'; ?>
-<?php include 'inc/header.tpl'; ?>
+<?php include 'tpl/header.tpl.html'; ?>
 
 <?php
 

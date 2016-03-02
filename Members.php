@@ -1,5 +1,5 @@
 <?php $pagetitle = 'Deelnemers'; ?>
-<?php include 'inc/header.tpl'; ?>
+<?php include 'tpl/header.tpl.html'; ?>
 
 <?php
     // connect to database or show error
