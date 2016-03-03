@@ -1,14 +1,23 @@
-<?php $pagetitle = 'Projecten'; ?>
-<?php include 'tpl/header.tpl.html'; ?>
+<?php 
+require 'inc/cnx.php';
+include 'inc/functions.php';
+
+include("inc/class.TemplatePower.inc.php");
+$tpl = new TemplatePower("tpl/project.tpl.html");
+$tpl->assignInclude("header", "tpl/header.tpl.html");
+$tpl->prepare();
+$tpl->assign('pagetitle', 'Projecten');
+$tpl->printToScreen();
+ ?> 
+
 
 <?php
 
-// connect to database or show error
-include 'inc/cnx.php';
+
 
 // voer de query uit of toon een foutbericht
 $query = "SELECT * FROM projects ";
-$result = mysqli_query($query, $link);
+$result = mysqli_query($link, $query);
 if (!$result) {
 die('<br>Invalid query: ' . mysqli_error());
 }
@@ -38,5 +47,5 @@ die('<br>Invalid query: ' . mysqli_error());
 <?php
 // Exit looping and close connection 
 }
-mysqli_close();
+mysqli_close($link);
 ?>

@@ -1,8 +1,6 @@
 <?php
-	
 function insert_project_into_db($link) {
-    if ( isset ($_POST['submit']))
-	{
+    if ( isset ($_POST['submit'])){
 		$titel = mysqli_real_escape_string($link, $_POST['titel']);
 		$opdrachtgever = mysqli_real_escape_string($link, $_POST['opdrachtgever']);
 		$bedrijf = mysqli_real_escape_string($link, $_POST['bedrijf']);
@@ -25,19 +23,84 @@ function insert_project_into_db($link) {
 			$query = "INSERT INTO projects (titel, opdrachtgever, bedrijf, telefoon, email, adres, plaats, pc, omschrijving) VALUES ('$titel', '$opdrachtgever', '$bedrijf', '$telefoon', '$email', '$adres', '$plaats', '$pc', '$omschrijving')";
 			$result = mysqli_query($link, $query);
 			if (!$result) {
-			  die('<br>Invalid query: [' . $query . '] error: ' . mysqli_error());
+			  die('<br>Invalid query: [' . $query . '] error: ' . mysqli_error($link));
 			}
 			// close link
 			mysqli_close($link);
+			
 			// decide what to do
-			if ( $result == true )
-			{
-			echo "<span style='color:green;'>Project aangemaakt.</span><br>";
+			if ( $result == true ){
+				echo "<span style='color:green;'>Project aangemaakt.</span><br>";
 			}
 			else
 			{
-			echo "<span style='color:red;'>Whoops! Er is iets mis gegaan.</span><br>";
+				echo "<span style='color:red;'>Whoops! Er is iets mis gegaan.</span><br>";
 			}
 		}
 	}
 }
+
+function insert_member_into_db($link) {
+    if ( isset ($_POST['submit'])){
+		$voornaam = mysqli_real_escape_string($link, $_POST['voornaam']);
+		$prefix = mysqli_real_escape_string($link, $_POST['prefix']);
+		$achternaam = mysqli_real_escape_string($link, $_POST['achternaam']);
+		$telefoon = mysqli_real_escape_string($link, $_POST['telefoon']);
+		$email = mysqli_real_escape_string($link, $_POST['email']);
+		$adres = mysqli_real_escape_string($link, $_POST['adres']);
+		$postcode = mysqli_real_escape_string($link, $_POST['postcode']);
+		$plaats = mysqli_real_escape_string($link, $_POST['plaats']);
+		$opmerking = mysqli_real_escape_string($link, $_POST['opmerking']);
+		$error = false;
+
+		if ( empty($voornaam) )
+		{
+		echo "<span style='color:red;'>Error: Voeg een voornaam toe!</span><br>";
+		$error = true;
+		}
+
+		if ( $error == false )
+		{
+		$query = "INSERT INTO members (voornaam, prefix, achternaam, telefoon, email, adres, postcode, plaats, opmerking) VALUES ('$voornaam', '$prefix', '$achternaam', '$telefoon', '$email', '$adres', '$postcode', '$plaats', '$opmerking')";
+		$result = mysqli_query($link, $query);
+			if (!$result) {
+			  die('<br>Invalid query: [' . $query . '] error: ' . mysqli_error($link));
+			}
+			// close link
+			mysqli_close($link);
+			
+			// decide what to do
+			if ( $result == true ){
+				echo "<span style='color:green;'>Gebruiker aangemaakt.</span><br>";
+			}
+			else{
+				echo "<span style='color:red;'>Whoops! Er is iets mis gegaan.</span><br>";
+			}
+		}
+	}
+}
+
+
+function get_member_from_db($link) {
+    // voer de query uit of toon een foutbericht
+    $query = "SELECT * FROM members";
+    $result = mysqli_query($link, $query);
+    if (!$result) {
+        die('<br>Invalid query: ' . mysqli_error($link));
+    }
+	
+    // Start looping table row
+    while ($rows = mysqli_fetch_array($result)) {
+		$members_array[] = $rows;
+	// Exit looping and close connection 
+    }
+    mysqli_close($link);
+	return $members_array;
+}
+
+function printr($data) {
+   echo "<pre>";
+      print_r($data);
+   echo "</pre>";
+}
+

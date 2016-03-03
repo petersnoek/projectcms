@@ -1,41 +1,31 @@
-<?php $pagetitle = 'Deelnemers'; ?>
-<?php include 'tpl/header.tpl.html'; ?>
+<?php 
+include 'inc/functions.php'; 
+require 'inc/cnx.php';
 
-<?php
-    // connect to database or show error
-    include 'inc/cnx.php';
+$member_array = get_member_from_db($link);
+	
 
-    // voer de query uit of toon een foutbericht
-    $query = "SELECT * FROM members ";
-    $result = mysqli_query($query, $link);
-    if (!$result) {
-        die('<br>Invalid query: ' . mysqli_error($link));
-    }
-?>
+include("inc/class.TemplatePower.inc.php");
+$tpl = new TemplatePower("tpl/members.tpl.html");
+$tpl->assignInclude("header" ,"tpl/header.tpl.html"); 
+$tpl->prepare();
+$tpl->assign('pagetitle', 'Deelnemers');
 
-<table>
-    <tr>
-        <td width="1%" align="center" bgcolor="#CCCCCC"><strong>#</strong></td>
-        <td width="2%" align="center" bgcolor="#CCCCCC"><strong>Voornaam:</strong></td>
-        <td width="1%" align="center" bgcolor="#CCCCCC"><strong>Prefix:</strong></td>
-        <td width="2%" align="center" bgcolor="#CCCCCC"><strong>Achternaam:</strong></td>
-        <td width="10%" align="center" bgcolor="#CCCCCC"><strong>Opmerking:</strong></td>
-    </tr>
+foreach($member_array as $member )
+{
+   $tpl->newBlock( "member_row" );
+ $tpl->assign( "id", $member['id'] );
+ $tpl->assign( "voornaam", $member['voornaam'] );
+ $tpl->assign( "prefix", $member['prefix'] );
+ $tpl->assign( "achternaam", $member['achternaam'] );
+ $tpl->assign( "opmerking", $member['opmerking'] );   
+}
 
-    <?php
-    // Start looping table row
-    while ($rows = mysqli_fetch_array($result)) {
-        ?>
-        <tr>
-            <td align="center"><?php echo $rows['id']; ?></td>
-            <td align="center"><?php echo $rows['voornaam']; ?></td>
-            <td align="center"><?php echo $rows['prefix']; ?></td>
-            <td align="center"><?php echo $rows['achternaam']; ?></td>
-            <td align="center"><?php echo $rows['opmerking']; ?></td>
-        </tr>
+$tpl->gotoBlock( "_ROOT" );
 
-        <?php
-// Exit looping and close connection 
-    }
-    mysqli_close($link);
-    ?>
+$tpl->printToScreen();
+ ?>
+
+
+
+
