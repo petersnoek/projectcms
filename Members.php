@@ -22,10 +22,5 @@ foreach($member_array as $member )
 }
 
 $tpl->gotoBlock( "_ROOT" );
-
 $tpl->printToScreen();
  ?>
-
-
-
-

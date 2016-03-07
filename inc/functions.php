@@ -104,3 +104,20 @@ function printr($data) {
    echo "</pre>";
 }
 
+function get_projects_from_db($link) {
+    // voer de query uit of toon een foutbericht
+    $query = "SELECT * FROM projects";
+    $result = mysqli_query($link, $query);
+    if (!$result) {
+        die('<br>Invalid query: ' . mysqli_error($link));
+    }
+	
+    // Start looping table row
+    while ($rows = mysqli_fetch_array($result)) {
+		$projects_array[] = $rows;
+	// Exit looping and close connection 
+    }
+    mysqli_close($link);
+	return $projects_array;
+}
+
