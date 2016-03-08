@@ -50,18 +50,36 @@ function insert_member_into_db($link) {
 		$adres = mysqli_real_escape_string($link, $_POST['adres']);
 		$postcode = mysqli_real_escape_string($link, $_POST['postcode']);
 		$plaats = mysqli_real_escape_string($link, $_POST['plaats']);
+		$wachtwoord = mysqli_real_escape_string($link, $_POST['wachtwoord']);
+		$wachtwoord2 = mysqli_real_escape_string($link, $_POST['wachtwoord2']);
 		$opmerking = mysqli_real_escape_string($link, $_POST['opmerking']);
 		$error = false;
 
 		if ( empty($voornaam) )
 		{
-		echo "<span style='color:red;'>Error: Voeg een voornaam toe!</span><br>";
+		echo "<span style='color:red;'>Voeg een voornaam toe!</span><br>";
 		$error = true;
 		}
 
+		if ( empty($wachtwoord) )
+		{
+		  echo "<span style='color:red;'>Vul een wachtwoord in!</span><br>";
+		  $error = true;
+		}
+		if ( empty($wachtwoord2) )
+		{
+		  echo "<span style='color:red;'>Herhaal je wachtwoord!</span><br>";
+		  $error = true;
+		}
+		if ( $wachtwoord != $wachtwoord2 )
+		{
+		  echo "<span style='color:red;'>Wachtwoorden zijn niet gelijk!</span><br>";
+		  $error = true;
+		}
+		
 		if ( $error == false )
 		{
-		$query = "INSERT INTO members (voornaam, prefix, achternaam, telefoon, email, adres, postcode, plaats, opmerking) VALUES ('$voornaam', '$prefix', '$achternaam', '$telefoon', '$email', '$adres', '$postcode', '$plaats', '$opmerking')";
+		$query = "INSERT INTO members (voornaam, prefix, achternaam, telefoon, email, adres, postcode, plaats, wachtwoord, opmerking) VALUES ('$voornaam', '$prefix', '$achternaam', '$telefoon', '$email', '$adres', '$postcode', '$plaats', '$wachtwoord', '$opmerking')";
 		$result = mysqli_query($link, $query);
 			if (!$result) {
 			  die('<br>Invalid query: [' . $query . '] error: ' . mysqli_error($link));
