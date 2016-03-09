@@ -1,4 +1,69 @@
 <?php
+session_start();
+
+function login($link) {
+	$error = ""; //Variable for storing our errors.
+	if(isset($_POST["submit"]))
+	{
+		if(empty($_POST["username"]) || empty($_POST["password"]))
+		{
+		$error = "Both fields are required.";
+		echo $error;
+		}
+		else
+		{
+			// Define $username and $password
+			$username= $_POST['username'];
+			$password= $_POST['password'];
+			 
+			// To protect from MySQL injection
+			$username = stripslashes($username);
+			$password = stripslashes($password);
+			$username = mysqli_real_escape_string($link, $username);
+			$password = mysqli_real_escape_string($link, $password);
+			$password = md5($password);
+			 
+			//Check username and password from database
+			$sql="SELECT id,username FROM members WHERE username='$username' and password='$password'";
+			$result=mysqli_query($link, $sql);
+			$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+			 
+			//If username and password exist in our database then create a session.
+			//Otherwise echo error.
+			 
+			if(mysqli_num_rows($result) == 1)
+			{
+				$_SESSION['username'] = $row['username']; // Initializing Session
+			}
+			else
+			{	
+				$error = "Incorrect username or password.";
+				Echo $error;
+			}
+		}
+	}
+}
+
+function check($link) {
+	
+	if (isset($_SESSION['username'])) {
+	
+	$user_check=$_SESSION['username'];
+	$query = "SELECT username FROM members WHERE username='".$user_check."'";
+	if ($sql = mysqli_query($link, $query))
+	{
+	  // Return the number of rows in result set
+		$rowcount=mysqli_num_rows($sql);
+		if ($rowcount == 0) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	}
+}
+
 function insert_project_into_db($link) {
     if ( isset ($_POST['submit'])){
 		$titel = mysqli_real_escape_string($link, $_POST['titel']);
