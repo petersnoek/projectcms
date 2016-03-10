@@ -2,32 +2,37 @@
 <html>
 <head>
     <title>{pagetitle}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="inc/style.css" />
+	  <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foundation | Welcome</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/app.css" />
 </head>
 <body>
+<div class="row">
+<div class="large-12 medium-12 columns">
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+		<li class="menu-text">ProjectCMS</li>
+		<li><a href="projects.php">Projecten</a></li>
+        <li><a href="members.php">Deelnemers</a></li>
+        <li><a href="project_new.php">Nieuw Project</a></li>
+        <li><a href="member_new.php">Nieuwe Deelnemer</a></li>
+		<li><a href="login.php">Login</a></li>
+		<li><a href="logout.php">Logout</a></li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li><input type="search" placeholder="Search"></li>
+      <li><button type="button" class="button">Search</button></li>
+    </ul>
+  </div>
+</div>
+{errormsg}
 
-<div class="container-fluid">
-
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li><a href="projects.php">Projecten</a></li>
-                <li><a href="members.php">Deelnemers</a></li>
-                <li><a href="project_new.php">Nieuw Project</a></li>
-                <li><a href="member_new.php">Nieuwe Deelnemer</a></li>
-				<li><a href="login.php">Login</a></li>
-				<li><a href="logout.php">Logout</a></li>
-            </ul>
-        </div>
-    </nav>
 
 
 

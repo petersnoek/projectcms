@@ -64,6 +64,16 @@ function check($link) {
 	}
 }
 
+function callout($type, $message) {
+	$callout = "<div class='".$type." callout' data-closable>
+				<h5>".$message."</h5>
+				<button class='close-button' aria-label='Dismiss alert' type='button' data-close>
+				<span aria-hidden='true'>&times;</span>
+				</button>
+				</div>";
+	return $callout;
+}
+
 function insert_project_into_db($link) {
     if ( isset ($_POST['submit'])){
 		$titel = mysqli_real_escape_string($link, $_POST['titel']);
