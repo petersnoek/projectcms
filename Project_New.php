@@ -10,6 +10,8 @@ if(check($link)){
 	$tpl->assignInclude("header", "tpl/header.tpl.html");
 	$tpl->prepare();
 	$tpl->assign('pagetitle', 'Nieuw Project');
+	$tpl->newBlock( "logged_in" );
+	$tpl->gotoBlock( "_ROOT" );
 	$tpl->printToScreen();
 }
 else{

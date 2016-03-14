@@ -22,14 +22,17 @@ if(check($link)){
 		$tpl->assign( "achternaam", $member['achternaam'] );
 		$tpl->assign( "opmerking", $member['opmerking'] );   
 	}
-
+	
+	$tpl->newBlock( "logged_in" );
 	$tpl->gotoBlock( "_ROOT" );
 	$tpl->printToScreen();
 	
 }
 else{
-	// Redirecting To Other Page and displaying an error message
-	header("location: login.php?error=U bent niet ingelogd"); 
+	// Redirecting To login page and displaying an error message
+	header("location: login.php?error=U bent niet ingelogd");
+	$tpl->newBlock( "logged_out" );
+	$tpl->gotoBlock( "_ROOT" );
 }
 
  ?>

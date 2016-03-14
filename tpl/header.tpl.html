@@ -20,8 +20,12 @@
         <li><a href="members.php">Deelnemers</a></li>
         <li><a href="project_new.php">Nieuw Project</a></li>
         <li><a href="member_new.php">Nieuwe Deelnemer</a></li>
-		<li><a href="login.php">Login</a></li>
+		<!-- START BLOCK : logged_in -->
 		<li><a href="logout.php">Logout</a></li>
+		<!-- END BLOCK : logged_in --> 
+		<!-- START BLOCK : logged_out -->
+		<li><a href="login.php">Login</a></li>
+		<!-- END BLOCK : logged_out --> 
     </ul>
   </div>
   <div class="top-bar-right">
@@ -32,6 +36,7 @@
   </div>
 </div>
 {errormsg}
+{loginmsg}
 
 
 

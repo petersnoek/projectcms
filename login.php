@@ -12,6 +12,14 @@ $tpl->assign('pagetitle', 'Login');
 if(isset($_GET['error'])){
 $tpl->assign('errormsg', callout("alert", $_GET['error']));
 }
-$tpl->printToScreen();
 
+if(check($link)){
+	header("location: Projects.php?welcome=Welkom, u bent ingelogd!"); 
+}
+
+else{
+	$tpl->newBlock( "logged_out" );
+	$tpl->gotoBlock( "_ROOT" );
+}
+$tpl->printToScreen();
 ?>

@@ -20,8 +20,12 @@ if(check($link)){
 		$tpl->assign( "opdrachtgever", $projects['opdrachtgever'] );
 		$tpl->assign( "omschrijving", $projects['omschrijving'] );
 	}
-
+	$tpl->newBlock( "logged_in" );
 	$tpl->gotoBlock( "_ROOT" );
+	
+	if(isset($_GET['welcome'])){
+	$tpl->assign('loginmsg', callout("success", $_GET['welcome']));
+	}
 	$tpl->printToScreen();
 }
 else{
