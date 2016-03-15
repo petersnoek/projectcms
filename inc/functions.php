@@ -154,7 +154,7 @@ function insert_member_into_db($link) {
 		
 		if ( $error == false )
 		{
-		$query = "INSERT INTO members (voornaam, prefix, achternaam, telefoon, email, adres, postcode, plaats, wachtwoord, opmerking) VALUES ('$voornaam', '$prefix', '$achternaam', '$telefoon', '$email', '$adres', '$postcode', '$plaats', '$wachtwoord', '$opmerking')";
+		$query = "INSERT INTO members (voornaam, prefix, achternaam, telefoon, email, adres, postcode, plaats, password, opmerking) VALUES ('$voornaam', '$prefix', '$achternaam', '$telefoon', '$email', '$adres', '$postcode', '$plaats', '$wachtwoord', '$opmerking')";
 		$result = mysqli_query($link, $query);
 			if (!$result) {
 			  die('<br>Invalid query: [' . $query . '] error: ' . mysqli_error($link));
