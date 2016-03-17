@@ -2,7 +2,7 @@
 require 'inc/cnx.php';
 include 'inc/functions.php';
 
-if(check($link)){
+(check($link));
 	insert_member_into_db($link);
 
 	include("inc/class.TemplatePower.inc.php");
@@ -10,15 +10,9 @@ if(check($link)){
 	$tpl->assignInclude("header", "tpl/header.tpl.html");
 	$tpl->prepare();
 	$tpl->assign('pagetitle', 'Nieuwe Deelnemer');
-	$tpl->newBlock( "logged_in" );
-	$tpl->gotoBlock( "_ROOT" );
-	$tpl->printToScreen();
-}
-else{
-	// Redirecting To Other Page and displaying an error message
-	header("location: login.php?error=U bent niet ingelogd"); 
 	$tpl->newBlock( "logged_out" );
 	$tpl->gotoBlock( "_ROOT" );
-}
+	$tpl->printToScreen();
+
 
 ?> 

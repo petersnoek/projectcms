@@ -198,12 +198,6 @@ function get_member_from_db($link) {
 	return $members_array;
 }
 
-function printr($data) {
-   echo "<pre>";
-      print_r($data);
-   echo "</pre>";
-}
-
 function get_projects_from_db($link) {
     // voer de query uit of toon een foutbericht
     $query = "SELECT * FROM projects";
@@ -219,5 +213,11 @@ function get_projects_from_db($link) {
     }
     mysqli_close($link);
 	return $projects_array;
+}
+
+function printr($data) {
+   echo "<pre>";
+      print_r($data);
+   echo "</pre>";
 }
 
