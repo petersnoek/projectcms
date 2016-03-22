@@ -8,6 +8,7 @@ if(check($link)){
 	include("inc/class.TemplatePower.inc.php");
 	$tpl = new TemplatePower("tpl/project_new.tpl.html");
 	$tpl->assignInclude("header", "tpl/header.tpl.html");
+	$tpl->assignInclude("footer", "tpl/footer.tpl.html");
 	$tpl->prepare();
 	$tpl->assign('pagetitle', 'Nieuw Project');
 	$tpl->newBlock( "logged_in" );

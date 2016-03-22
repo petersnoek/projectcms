@@ -10,6 +10,7 @@ if(check($link)){
 	include("inc/class.TemplatePower.inc.php");
 	$tpl = new TemplatePower("tpl/members.tpl.html");
 	$tpl->assignInclude("header" ,"tpl/header.tpl.html"); 
+	$tpl->assignInclude("footer", "tpl/footer.tpl.html");
 	$tpl->prepare();
 	$tpl->assign('pagetitle', 'Deelnemers');
 
