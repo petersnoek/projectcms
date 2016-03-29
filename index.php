@@ -8,7 +8,8 @@ include 'inc/functions.php';
 	$tpl->assignInclude("footer", "tpl/footer.tpl.html");
 	$tpl->prepare();
 	$tpl->assign('pagetitle', 'Welkom');
-
+	$tpl->newBlock( "logged_out" );
+	$tpl->gotoBlock( "_ROOT" );
 	$tpl->printToScreen();
 
 

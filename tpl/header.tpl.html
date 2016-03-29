@@ -5,7 +5,6 @@
 	  <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation | Welcome</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/app.css" />
 </head>
@@ -21,24 +20,25 @@
         <li><a href="project_new.php">Nieuw Project</a></li>
     </ul>
 	</li>
-  </div>
-  <div class="top-bar-right">
-    <ul class="dropdown menu" data-dropdown-menu>
-      <li>
-		<a href="#">Whaddup</a>
-        <ul class="menu vertical">
-			<li><a href="Member_New.php">Registreren</a></li>
-			<!-- START BLOCK : logged_in -->
-			<li><a href="logout.php">Logout</a></li>
-			<!-- END BLOCK : logged_in --> 
-			<!-- START BLOCK : logged_out -->
-			<li><a href="login.php">Login</a></li>
-			<!-- END BLOCK : logged_out --> 
+	</div>
+	<div class="top-bar-right">
+		<ul class="dropdown menu" data-dropdown-menu>
+			<li><a href="#">{name}</a></li>
+			<li><a href="#">Instellingen</a>
+				<ul class="menu vertical">
+					<li><a href="Member_New.php">Registreren</a></li>
+					<!-- START BLOCK : logged_in -->
+					<li><a href="logout.php">Logout</a></li>
+					<!-- END BLOCK : logged_in --> 
+					<!-- START BLOCK : logged_out -->
+					<li><a href="login.php">Login</a></li>
+					<!-- END BLOCK : logged_out --> 
+				</ul>
+			</li>
 		</ul>
-      </li>
-    </ul>
-  </div>
+	</div>
 </div>
+	
 {errormsg}
 {loginmsg}
 

@@ -11,6 +11,7 @@ if(check($link)){
 	$tpl->assignInclude("footer", "tpl/footer.tpl.html");
 	$tpl->prepare();
 	$tpl->assign('pagetitle', 'Projecten');
+	$tpl->assign('name', 'Naam');
 
 
 	foreach($projects_array as $projects )
