@@ -95,22 +95,19 @@ function insert_project_into_db($link) {
 
 		if ( $error == false )
 		{
-			$query = "INSERT INTO projects (titel, opdrachtgever, bedrijf, telefoon, email, adres, plaats, pc, omschrijving) VALUES ('$titel', '$opdrachtgever', '$bedrijf', '$telefoon', '$email', '$adres', '$plaats', '$pc', '$omschrijving')";
-			$result = mysqli_query($link, $query);
-			if (!$result) {
-			  die('<br>Invalid query: [' . $query . '] error: ' . mysqli_error($link));
-			}
-			// close link
-			mysqli_close($link);
-			
+			$stmt = mysqli_prepare($link, "INSERT INTO projects (titel, opdrachtgever, bedrijf, telefoon, email, adres, plaats, pc, omschrijving) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			mysqli_stmt_bind_param($stmt, "sssssssss", $titel, $opdrachtgever, $bedrijf, $telefoon, $email, $adres, $plaats, $pc, $omschrijving);
 			// decide what to do
-			if ( $result == true ){
+			if ( mysqli_stmt_execute($stmt)){
 				echo "<span style='color:green;'>Project aangemaakt.</span><br>";
 			}
 			else
 			{
 				echo "<span style='color:red;'>Whoops! Er is iets mis gegaan.</span><br>";
 			}
+			mysqli_stmt_close($stmt);
+			
+			
 		}
 	}
 }
@@ -161,21 +158,20 @@ function insert_member_into_db($link) {
 		
 		if ( $error == false )
 		{
-		$query = "INSERT INTO members (voornaam, prefix, achternaam, username, telefoon, email, adres, postcode, plaats, password, opmerking) VALUES ('$voornaam', '$prefix', '$achternaam', '$username', '$telefoon', '$email', '$adres', '$postcode', '$plaats', '$wachtwoord', '$opmerking')";
-		$result = mysqli_query($link, $query);
-			if (!$result) {
-			  die('<br>Invalid query: [' . $query . '] error: ' . mysqli_error($link));
-			}
-			// close link
-			mysqli_close($link);
+			$stmt = mysqli_prepare($link, "INSERT INTO members (voornaam, prefix, achternaam, username, telefoon, email, adres, postcode, plaats, password, opmerking) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			
+			mysqli_stmt_bind_param($stmt, "sssssssssss", $voornaam, $prefix, $achternaam, $username, $telefoon, $email, $adres, $postcode, $plaats, $wachtwoord, $opmerking);
+
 			// decide what to do
-			if ( $result == true ){
+			if ( mysqli_stmt_execute($stmt)){
 				echo "<span style='color:green;'>Gebruiker aangemaakt.</span><br>";
 			}
 			else{
 				echo "<span style='color:red;'>Whoops! Er is iets mis gegaan.</span><br>";
 			}
+			// close link
+			
+			mysqli_stmt_close($stmt);
 		}
 	}
 }
