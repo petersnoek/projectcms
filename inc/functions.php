@@ -24,21 +24,35 @@ function login($link) {
 			$password = md5($password);
 			 
 			//Check username and password from database
-			$sql="SELECT id,username FROM members WHERE username='$username' and password='$password'";
-			$result=mysqli_query($link, $sql);
-			$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
-			 
-			//If username and password exist in our database then create a session.
-			//Otherwise echo error.
-			 
-			if(mysqli_num_rows($result) == 1)
-			{
-				$_SESSION['username'] = $row['username']; // Initializing Session
-			}
-			else
-			{	
-				$error = "Incorrect username or password.";
-				Echo $error;
+			
+			/* create a prepared statement */
+			if ($stmt = mysqli_prepare($link, "SELECT username FROM members WHERE username=? and password=?")) {
+
+				/* bind parameters for markers */
+				mysqli_stmt_bind_param($stmt, "ss", $username, $password);
+
+				/* execute query */
+				mysqli_stmt_execute($stmt);
+
+				/* bind result variables */
+				mysqli_stmt_bind_result($stmt, $username2);
+				
+				/*If username and password exist in our database then create a session.
+				Otherwise echo error.*/
+				
+				if (mysqli_stmt_fetch($stmt)){
+				$_SESSION['username'] = $username2; // Initializing Session
+				}
+				else
+				{
+					$error = "Incorrect username or password.";
+					Echo $error;
+				}
+
+				echo $username2;
+
+				/* close statement */
+				mysqli_stmt_close($stmt);
 			}
 		}
 	}
@@ -163,7 +177,7 @@ function insert_member_into_db($link) {
 			mysqli_stmt_bind_param($stmt, "sssssssssss", $voornaam, $prefix, $achternaam, $username, $telefoon, $email, $adres, $postcode, $plaats, $wachtwoord, $opmerking);
 
 			// decide what to do
-			if ( mysqli_stmt_execute($stmt)){
+			if (mysqli_stmt_execute($stmt)){
 				echo "<span style='color:green;'>Gebruiker aangemaakt.</span><br>";
 			}
 			else{
