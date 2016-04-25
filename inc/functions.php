@@ -231,3 +231,37 @@ function printr($data) {
    echo "</pre>";
 }
 
+function get_project_members_from_db ($link) {
+		$sql = "SELECT 
+					project_members.id, 
+					projects.titel, 
+					members.username
+				FROM 
+					project_members
+				LEFT OUTER JOIN 
+					projects
+				ON 
+					project_members.project_id = projects.id
+				LEFT OUTER JOIN 
+					members
+				ON 
+					project_members.member_id = members.id
+					";
+		
+		// voer de query uit
+		$result = $link->query($sql);		
+		
+		// als er iets fout ging met de query, dan heeft $result de waarde false. Geef dan een foutmelding weer.
+		if( $result == false ){
+			die('There was an error running the query [' . $link->error . ']');
+		}
+
+		
+    // Start looping table row
+    while ($rows = mysqli_fetch_array($result)) {
+		$project_members_array[] = $rows;
+	// Exit looping and close connection 
+    }
+    mysqli_close($link);
+	return $project_members_array;
+}
