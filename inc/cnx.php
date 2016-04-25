@@ -1,16 +1,11 @@
 <?php
-    define("HOST", "localhost");     // The host you want to connect to.
-	define("USER", "cms");    // The database username. 
-	define("PASSWORD", "Studentje1");    // The database password. 
-	define("DATABASE", "projectcms");    // The database name.
- 
-	define("CAN_REGISTER", "any");
-	define("DEFAULT_ROLE", "member");
- 
-	define("SECURE", FALSE);    // FOR DEVELOPMENT ONLY!!!!
-		
+    $mysqlhost = 'localhost';
+    $mysqldb = 'projectcms';
+    $mysqluser = 'cms';
+    $mysqlpass = 'Studentje1';
+
     // create a connection to the database
-    $link = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+    $link = mysqli_connect($mysqlhost, $mysqluser, $mysqlpass, $mysqldb);
 
     // if something went wrong, display error information
     if (!$link) {
