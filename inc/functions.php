@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 function login($link) {
 	$error = ""; //Variable for storing our errors.
 	if(isset($_POST["submit"]))
@@ -27,13 +26,10 @@ function login($link) {
 			
 			/* create a prepared statement */
 			if ($stmt = mysqli_prepare($link, "SELECT username FROM members WHERE username=? and password=?")) {
-
 				/* bind parameters for markers */
 				mysqli_stmt_bind_param($stmt, "ss", $username, $password);
-
 				/* execute query */
 				mysqli_stmt_execute($stmt);
-
 				/* bind result variables */
 				mysqli_stmt_bind_result($stmt, $username2);
 				
@@ -48,16 +44,13 @@ function login($link) {
 					$error = "Incorrect username or password.";
 					Echo $error;
 				}
-
 				echo $username2;
-
 				/* close statement */
 				mysqli_stmt_close($stmt);
 			}
 		}
 	}
 }
-
 function check($link) {
 	
 	if (isset($_SESSION['username'])) {
@@ -77,7 +70,6 @@ function check($link) {
 	}
 	}
 }
-
 function callout($type, $message) {
 	$callout = "<div class='".$type." callout' data-closable>
 				<h5>".$message."</h5>
@@ -87,7 +79,6 @@ function callout($type, $message) {
 				</div>";
 	return $callout;
 }
-
 function insert_project_into_db($link) {
     if ( isset ($_POST['submit'])){
 		$titel = mysqli_real_escape_string($link, $_POST['titel']);
@@ -100,13 +91,11 @@ function insert_project_into_db($link) {
 		$plaats = mysqli_real_escape_string($link, $_POST['plaats']);
 		$omschrijving = mysqli_real_escape_string($link, $_POST['omschrijving']);
 		$error = false;
-
 		if ( empty($titel) )
 		{
 		echo "<span style='color:red;'>Error: Add a title!</span><br>";
 		$error = true;
 		}
-
 		if ( $error == false )
 		{
 			$stmt = mysqli_prepare($link, "INSERT INTO projects (titel, opdrachtgever, bedrijf, telefoon, email, adres, plaats, pc, omschrijving) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -125,7 +114,6 @@ function insert_project_into_db($link) {
 		}
 	}
 }
-
 function insert_member_into_db($link) {
     if ( isset ($_POST['submit'])){
 		$voornaam = mysqli_real_escape_string($link, $_POST['voornaam']);
@@ -141,7 +129,6 @@ function insert_member_into_db($link) {
 		$wachtwoord2 = mysqli_real_escape_string($link,  md5($_POST['wachtwoord2']));
 		$opmerking = mysqli_real_escape_string($link, $_POST['opmerking']);
 		$error = false;
-
 		if ( empty($voornaam) )
 		{
 		echo "<span style='color:red;'>Voeg een voornaam toe!</span><br>";
@@ -153,7 +140,6 @@ function insert_member_into_db($link) {
 		echo "<span style='color:red;'>Voeg een gebruikersnaam toe!</span><br>";
 		$error = true;
 		}
-
 		if ( empty($wachtwoord) )
 		{
 		  echo "<span style='color:red;'>Vul een wachtwoord in!</span><br>";
@@ -175,7 +161,6 @@ function insert_member_into_db($link) {
 			$stmt = mysqli_prepare($link, "INSERT INTO members (voornaam, prefix, achternaam, username, telefoon, email, adres, postcode, plaats, password, opmerking) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			
 			mysqli_stmt_bind_param($stmt, "sssssssssss", $voornaam, $prefix, $achternaam, $username, $telefoon, $email, $adres, $postcode, $plaats, $wachtwoord, $opmerking);
-
 			// decide what to do
 			if (mysqli_stmt_execute($stmt)){
 				echo "<span style='color:green;'>Gebruiker aangemaakt.</span><br>";
@@ -189,8 +174,6 @@ function insert_member_into_db($link) {
 		}
 	}
 }
-
-
 function get_member_from_db($link) {
     // voer de query uit of toon een foutbericht
     $query = "SELECT * FROM members";
@@ -207,7 +190,6 @@ function get_member_from_db($link) {
     mysqli_close($link);
 	return $members_array;
 }
-
 function get_projects_from_db($link) {
     // voer de query uit of toon een foutbericht
     $query = "SELECT * FROM projects";
@@ -224,10 +206,41 @@ function get_projects_from_db($link) {
     mysqli_close($link);
 	return $projects_array;
 }
-
 function printr($data) {
    echo "<pre>";
       print_r($data);
    echo "</pre>";
 }
-
+function get_project_members_from_db ($link) {
+		$sql = "SELECT 
+					project_members.id, 
+					projects.titel, 
+					members.username
+				FROM 
+					project_members
+				LEFT OUTER JOIN 
+					projects
+				ON 
+					project_members.project_id = projects.id
+				LEFT OUTER JOIN 
+					members
+				ON 
+					project_members.member_id = members.id
+					";
+		
+		// voer de query uit
+		$result = $link->query($sql);		
+		
+		// als er iets fout ging met de query, dan heeft $result de waarde false. Geef dan een foutmelding weer.
+		if( $result == false ){
+			die('There was an error running the query [' . $link->error . ']');
+		}
+		
+    // Start looping table row
+    while ($rows = mysqli_fetch_array($result)) {
+		$project_members_array[] = $rows;
+	// Exit looping and close connection 
+    }
+    mysqli_close($link);
+	return $project_members_array;
+}
