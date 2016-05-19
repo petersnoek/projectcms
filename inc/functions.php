@@ -1,6 +1,76 @@
 <?php
 session_start();
 
+function which_day() {	
+	date_default_timezone_set('Europe/Amsterdam');
+	$today = date ("N");
+
+	echo $today;
+
+	if ($today == 1)
+	{
+		echo "Vandaag is het maandag";
+	}
+	elseif ($today == 2)
+	{
+		echo "vandaag is dinsdag";
+	}
+	elseif ($today == 3)
+	{
+		echo "vandaag is woensdag";
+	}
+	elseif ($today == 4)
+	{
+		echo "vandaag is donderdag";
+	}
+	elseif ($today == 5)
+	{
+		echo "vandaag is vrijdag";
+	}
+	elseif ($today == 6)
+	{
+		echo "vandaag is zaterdag";
+	}
+	elseif ($today == 7)
+	{
+		echo "vandaag is zondag";
+	}
+	
+	/* Oude functie met een afkorting dag als result
+		$today = date ("D");
+	echo $today;
+
+	if (strpos($today, 'Mon') !== false)
+	{
+		echo "Vandaag is het maandag";
+	}
+	elseif (strpos($today, 'Tues') !== false)
+	{
+		echo "vandaag is dinsdag";
+	}
+	elseif (strpos($today, 'Wed') !== false)
+	{
+		echo "vandaag is woensdag";
+	}
+	elseif (strpos($today, 'Thurs') !== false)
+	{
+		echo "vandaag is donderdag";
+	}
+	elseif (strpos($today, 'Fri') !== false)
+	{
+		echo "vandaag is vrijdag";
+	}
+	elseif (strpos($today, 'Sat') !== false)
+	{
+		echo "vandaag is zaterdag";
+	}
+	elseif (strpos($today, 'Sun') !== false)
+	{
+		echo "vandaag is zondag";
+	}
+	*/
+}
+
 function login($link) {
 	$error = ""; //Variable for storing our errors.
 	if(isset($_POST["submit"]))

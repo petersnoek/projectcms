@@ -3,6 +3,7 @@ require 'inc/cnx.php';
 include 'inc/functions.php';
 
 if(check($link)){
+	$which_day = which_day();
 	$projects_array = get_projects_from_db($link);
 
 	include("inc/class.TemplatePower.inc.php");

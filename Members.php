@@ -3,9 +3,7 @@ include 'inc/functions.php';
 require 'inc/cnx.php';
 
 if(check($link)){
-	
 	$member_array = get_member_from_db($link);
-		
 
 	include("inc/class.TemplatePower.inc.php");
 	$tpl = new TemplatePower("tpl/members.tpl.html");
