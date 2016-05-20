@@ -335,3 +335,19 @@ function get_project_members_from_db ($link) {
     mysqli_close($link);
 	return $project_members_array;
 }
+
+function get_select ($link) {
+$query = "SELECT username FROM members";
+$result = mysqli_query($link, $query);
+if (!$result) {
+	die('<br>Invalid query: ' . mysqli_error($link));
+}
+					
+// Start looping table row
+while ($row = mysqli_fetch_array($result)) {	
+echo '<option value="'.$row['username'].'">'.$row['username'].'</option>';
+
+// Exit looping and close connection 
+}
+mysqli_close($link);
+}

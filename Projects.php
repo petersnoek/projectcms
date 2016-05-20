@@ -14,7 +14,7 @@ if(check($link)){
 	$tpl->assign('pagetitle', 'Projecten');
 	$tpl->assign('name', 'Naam');
 
-
+	$i = 0;
 	foreach($projects_array as $projects )
 	{
 		$tpl->newBlock( "projects_row" );
@@ -22,6 +22,12 @@ if(check($link)){
 		$tpl->assign( "titel", $projects['titel'] );
 		$tpl->assign( "opdrachtgever", $projects['opdrachtgever'] );
 		$tpl->assign( "omschrijving", $projects['omschrijving'] );
+		$tpl->assign( "deelnemers", $projects['deelnemers'] );
+		$tpl->assign( "open_modal", '<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal'.$i.'">Deelnemer toevoegen</button>' );
+		$tpl->newBlock( "modal_row" );
+		$tpl->assign( "modal", $i  );
+		$i++;
+		$tpl->gotoBlock( "_ROOT" );
 	}
 	$tpl->newBlock( "logged_in" );
 	$tpl->gotoBlock( "_ROOT" );

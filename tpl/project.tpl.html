@@ -1,10 +1,20 @@
 <!-- INCLUDE BLOCK : header -->
+
+<a href="#" data-reveal-id="myModal234234234234">Click Me For A Modal</a>
+
+<div id="myModal234234234234" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+  <h2 id="modalTitle">Awesome. I have it.</h2>
+  <p class="lead">Your couch.  It is mine.</p>
+  <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
 <div class="row" id="header">
 	<div class="large-1 columns">
 	<strong>ID</strong>
 	</div>
 	
-	<div class="large-3 columns">
+	<div class="large-2 columns">
 	<strong>Titel:</strong>
 	</div>
 	
@@ -12,8 +22,12 @@
 	<strong>Opdrachtgever:</strong>
 	</div>
 	
-	<div class="large-6 columns">
+	<div class="large-5 columns">
 	<strong>Omschrijving:</strong>
+	</div>
+	
+	<div class="large-2 columns">
+	<strong>Deelnemers:</strong>
 	</div>
 	
 </div>
@@ -23,7 +37,7 @@
 	{id}
 	</div>
 	
-	<div class="large-3 columns" id="cell">
+	<div class="large-2 columns" id="cell">
 	{titel}
 	</div>
 	
@@ -31,26 +45,30 @@
 	{opdrachtgever}
 	</div>
 	
-	<div class="large-6 columns" id="cell">
+	<div class="large-5 columns" id="cell">
 	{omschrijving}
 	</div>
+
+	<div class="large-2 columns" id="cell">
+	{deelnemers}
+	</div>
 </div>
 
 <div class="row">
 	<div class="large-3 columns" id="cell">
-	week 1
+	Week 1
 	</div>
 	
 	<div class="large-3 columns" id="cell">
-	week 2
+	Week 2
 	</div>
 	
 	<div class="large-3 columns" id="cell">
-	week 3
+	Week 3
 	</div>
 	
 	<div class="large-3 columns" id="cell">
-	week 4
+	Week 4
 	</div>
 </div>
 
@@ -98,7 +116,21 @@
 			<div class="small-1 columns" id="cellweekend">za</div>
 			<div class="small-1 columns end" id="cellweekend" >zo</div>
 		</div>
+	</div>
+</div>
+</div class="row">
+	<div class="large-12 columns" id="cell">
+	{open_modal}
 	</div>
 </div>
 <!-- END BLOCK : projects_row -->
+
+	<!-- START BLOCK : modal_row -->
+<div id="myModal{modal}" class="reveal-modal" data-reveal aria-labelledby="modalTitle{modal}" aria-hidden="true" role="dialog">
+  <h2 id="modalTitle{modal}">Selecteer een deelnemer:</h2>
+			<select name="username">
+			</select> 
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+	<!-- END BLOCK : modal_row -->
 <!-- INCLUDE BLOCK : footer -->
