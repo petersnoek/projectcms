@@ -26,7 +26,8 @@ if(check($link)){
 		$tpl->assign( "opdrachtgever", $projects['opdrachtgever'] );
 		$tpl->assign( "omschrijving", $projects['omschrijving'] );
 		$tpl->assign( "deelnemers", $projects['deelnemers'] );
-		$tpl->assign( "open_modal", '<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal'.$i.'">Deelnemer toevoegen</button>' );
+		$tpl->assign( "open_modal", '
+									<p><a data-open="myModal'.$i.'">Deelnemer toevoegen</a></p>' );
 		$tpl->newBlock( "modal_row" );
 		$tpl->assign( "modal", $i  );
 		$i++;
