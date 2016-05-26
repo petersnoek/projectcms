@@ -9,128 +9,104 @@
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
 
-<div class="row" id="header">
+<div class="row header">
 	<div class="large-1 columns">
-	<strong>ID</strong>
+		<strong>ID</strong>
+	</div>
+	
+	<div class="large-1 columns">
+		<strong>Titel:</strong>
 	</div>
 	
 	<div class="large-2 columns">
-	<strong>Titel:</strong>
+		<strong>Opdrachtgever:</strong>
 	</div>
 	
+	<div class="large-4 columns">
+		<strong>Omschrijving:</strong>
+	</div>
+
 	<div class="large-2 columns">
-	<strong>Opdrachtgever:</strong>
+		<strong>Deelnemers:</strong>
 	</div>
-	
-	<div class="large-5 columns">
-	<strong>Omschrijving:</strong>
-	</div>
-	
-	<div class="large-2 columns">
-	<strong>Deelnemers:</strong>
-	</div>
-	
 </div>
+
 <!-- START BLOCK : projects_row -->
 <div class="row">
-	<div class="large-1 columns" id="cell">
+	<div class="large-1 columns cell">
 	{id}
 	</div>
 	
-	<div class="large-2 columns" id="cell">
+	<div class="large-1 columns cell">
 	{titel}
 	</div>
-	
-	<div class="large-2 columns" id="cell">
+
+	<div class="large-2 columns cell">
 	{opdrachtgever}
 	</div>
-	
-	<div class="large-5 columns" id="cell">
+
+	<div class="large-4 columns cell">
 	{omschrijving}
 	</div>
 
-	<div class="large-2 columns" id="cell">
+	<div class="large-2 columns cell">
 	{deelnemers}
 	</div>
+
+
+	<div class="large-2 columns cell">
+		{open_modal}
+		<!-- START BLOCK : modal_row -->
+		<div id="myModal{modal}" class="reveal-modal" data-reveal aria-labelledby="modalTitle{modal}" aria-hidden="true" role="dialog">
+		  <h2 id="modalTitle{modal}">Selecteer een deelnemer:</h2>
+					<select name="username">
+					</select> 
+		  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+		</div>
+		<!-- END BLOCK : modal_row -->
+	</div>
+
 </div>
 
 <div class="row">
-	<div class="large-3 columns" id="cell">
+	<div class="large-3 columns cell">
 	Week 1
 	</div>
 	
-	<div class="large-3 columns" id="cell">
+	<div class="large-3 columns cell">
 	Week 2
 	</div>
 	
-	<div class="large-3 columns" id="cell">
+	<div class="large-3 columns cell">
 	Week 3
 	</div>
 	
-	<div class="large-3 columns" id="cell">
+	<div class="large-3 columns cell">
 	Week 4
 	</div>
 </div>
 
+<!-- START BLOCK : month_row -->
 <div class="row">
-	<div class="large-3 columns" align="center">
-		<div class="row">
-			<div class="small-1 columns" id="cell">ma</div>
-			<div class="small-1 columns" id="cell">di</div>
-			<div class="small-1 columns" id="cell">wo</div>
-			<div class="small-1 columns" id="cell">do</div>
-			<div class="small-1 columns" id="cell">vr</div>
-			<div class="small-1 columns" id="cellweekend">za</div>
-			<div class="small-1 columns end" id="cellweekend" >zo</div>
-		</div>
-	</div>
-	<div class="large-3 columns" align="center">
-		<div class="row">
-			<div class="small-1 columns" id="cell">ma</div>
-			<div class="small-1 columns" id="cell">di</div>
-			<div class="small-1 columns" id="cell">wo</div>
-			<div class="small-1 columns" id="cell">do</div>
-			<div class="small-1 columns" id="cell">vr</div>
-			<div class="small-1 columns" id="cellweekend">za</div>
-			<div class="small-1 columns end" id="cellweekend" >zo</div>
-		</div>
-	</div>
-	<div class="large-3 columns" align="center">
-		<div class="row">
-			<div class="small-1 columns" id="cell">ma</div>
-			<div class="small-1 columns" id="cell">di</div>
-			<div class="small-1 columns" id="cell">wo</div>
-			<div class="small-1 columns" id="cell">do</div>
-			<div class="small-1 columns" id="cell">vr</div>
-			<div class="small-1 columns" id="cellweekend">za</div>
-			<div class="small-1 columns end" id="cellweekend" >zo</div>
-		</div>
-	</div>
-	<div class="large-3 columns" align="center">
-		<div class="row">
-			<div class="small-1 columns" id="cell">ma</div>
-			<div class="small-1 columns" id="cell">di</div>
-			<div class="small-1 columns" id="cell">wo</div>
-			<div class="small-1 columns" id="cell">do</div>
-			<div class="small-1 columns" id="cell">vr</div>
-			<div class="small-1 columns" id="cellweekend">za</div>
-			<div class="small-1 columns end" id="cellweekend" >zo</div>
-		</div>
-	</div>
+	<!-- START BLOCK : month_cell -->
+	<div class="{class}">{cell}</div>
+	<!-- END BLOCK : month_cell -->
 </div>
-</div class="row">
-	<div class="large-12 columns" id="cell">
-	{open_modal}
+<!-- END BLOCK : month_row -->
+
+<div class="row">
+	<!-- START BLOCK : week_row -->
+	<div class="large-3 columns" align="center">
+		<div class="row">
+			<!-- START BLOCK : day_row -->
+			<div class="small-1 columns cell {end}">{date_N}</div>
+			<!-- END BLOCK : day_row -->
+		</div>
 	</div>
+	<!-- END BLOCK : week_row -->
 </div>
+
 <!-- END BLOCK : projects_row -->
 
-	<!-- START BLOCK : modal_row -->
-<div id="myModal{modal}" class="reveal-modal" data-reveal aria-labelledby="modalTitle{modal}" aria-hidden="true" role="dialog">
-  <h2 id="modalTitle{modal}">Selecteer een deelnemer:</h2>
-			<select name="username">
-			</select> 
-  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-</div>
-	<!-- END BLOCK : modal_row -->
+
 <!-- INCLUDE BLOCK : footer -->

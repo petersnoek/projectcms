@@ -3,7 +3,10 @@ require 'inc/cnx.php';
 include 'inc/functions.php';
 
 if(check($link)){
+	/*
+	// oude zooi die weg kan nadat de voorbeeld code is geimplementeerd
 	$which_day = which_day();
+	*/
 	$projects_array = get_projects_from_db($link);
 
 	include("inc/class.TemplatePower.inc.php");
@@ -27,7 +30,28 @@ if(check($link)){
 		$tpl->newBlock( "modal_row" );
 		$tpl->assign( "modal", $i  );
 		$i++;
+
+		$days = CreateArrayWith24Dates();
+		$today = new DateTime();
+		$pos = array_search($today->format('d/m'), $days );
+		AddMonthrowToTemplate($tpl, $days, $pos);
+		
+		/*
+		// oude zooi die weg kan nadat de voorbeeld code is geimplementeerd
+		for ($numweek = 0; $numweek <= 3; $numweek++) {
+			$tpl->newBlock( "week_row" );
+			for ($numday = 0; $numday <= 6; $numday++) {
+				$tpl->newBlock( "day_row" );
+				$tpl->assign( "date_N", return_day($numday));
+				if($numday == 6){
+					$tpl->assign( "end", "end" );
+				}
+				$tpl->gotoBlock( "_ROOT" );
+			}
+			$tpl->gotoBlock( "_ROOT" );
+		} 
 		$tpl->gotoBlock( "_ROOT" );
+		*/
 	}
 	$tpl->newBlock( "logged_in" );
 	$tpl->gotoBlock( "_ROOT" );

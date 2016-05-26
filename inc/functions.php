@@ -1,75 +1,113 @@
 <?php
 session_start();
 
+// template should have a month_row block for every month row,
+// template should have a month_cell block which will be repeated 24 times
+// array should have 24 values.
+// if you want to make 1 cell pink, then pass the number of that cell as $redindex (first cell = 0)
+function AddMonthrowToTemplate($tpl, $array, $redindex = -1) {
+
+    $tpl->newBlock('month_row');
+
+    for ($i=0; $i<=23; $i++) {
+        $tpl->newBlock('month_cell');
+
+        if ( $i == $redindex )
+            $tpl->assign('class', 'monthday red');
+        else
+            $tpl->assign('class', 'monthday');
+
+        $tpl->assign('cell', $array[$i] );
+    }
+}
+
+function CreateArrayWith24Dates($format = 'd/m') {
+    // create array with 24 days
+    date_default_timezone_set('Europe/Amsterdam');
+    // get the daynumber of today (sunday = 0, monday = 1, etc)
+    $today = new DateTime();                    // 2016-5-26
+    $daynumber = $today->format('w');           // thursday - 4
+    $monday = new DateTime('tomorrow - ' . $daynumber . ' days');
+    $days = [];
+    $startdate = $monday;
+    for ($i = 0; $i < 24 ; $i++) {
+        $dag = new DateTime($startdate->format('Y-m-d'));
+        $datestring = $dag->format($format);
+        array_push($days, $datestring);
+        $startdate = $startdate->add(DateInterval::createfromdatestring('+1 day'));
+    }
+    return $days;
+}
+
+/*
+// oude zooi die weg kan nadat de voorbeeld code is geimplementeerd
 function which_day() {	
 	date_default_timezone_set('Europe/Amsterdam');
-	$today = date ("N");
-
-	echo $today;
-
-	if ($today == 1)
-	{
-		echo "Vandaag is het maandag";
-	}
-	elseif ($today == 2)
-	{
-		echo "vandaag is dinsdag";
-	}
-	elseif ($today == 3)
-	{
-		echo "vandaag is woensdag";
-	}
-	elseif ($today == 4)
-	{
-		echo "vandaag is donderdag";
-	}
-	elseif ($today == 5)
-	{
-		echo "vandaag is vrijdag";
-	}
-	elseif ($today == 6)
-	{
-		echo "vandaag is zaterdag";
-	}
-	elseif ($today == 7)
-	{
-		echo "vandaag is zondag";
-	}
-	
-	/* Oude functie met een afkorting dag als result
-		$today = date ("D");
-	echo $today;
-
-	if (strpos($today, 'Mon') !== false)
-	{
-		echo "Vandaag is het maandag";
-	}
-	elseif (strpos($today, 'Tues') !== false)
-	{
-		echo "vandaag is dinsdag";
-	}
-	elseif (strpos($today, 'Wed') !== false)
-	{
-		echo "vandaag is woensdag";
-	}
-	elseif (strpos($today, 'Thurs') !== false)
-	{
-		echo "vandaag is donderdag";
-	}
-	elseif (strpos($today, 'Fri') !== false)
-	{
-		echo "vandaag is vrijdag";
-	}
-	elseif (strpos($today, 'Sat') !== false)
-	{
-		echo "vandaag is zaterdag";
-	}
-	elseif (strpos($today, 'Sun') !== false)
-	{
-		echo "vandaag is zondag";
-	}
-	*/
+	$today = date("Y-m-d");
+	$start_date = date("Y-m-d", strtotime("-".week_generation()." day"));
+	echo $start_date;
 }
+
+function return_day($num) {
+	switch ($num) {
+    case 0:
+        return "Ma";
+        break;
+    case 1:
+        return "Di";
+        break;
+    case 2:
+        return "Wo";
+        break;
+    case 3:
+        return "Do";
+        break;
+	case 4:
+        return "Fri";
+        break;
+	case 5:
+        return "Sat";
+        break;
+    default:
+        return "Zo";
+	}
+}
+
+function week_generation() {
+	$day = date("N") - 1;
+	return $day;
+	
+
+	if (strpos($day, 'Mon') !== false)
+	{
+		return 0;
+	}
+	elseif (strpos($day, 'Tues') !== false)
+	{
+		return 1;
+	}
+	elseif (strpos($day, 'Wed') !== false)
+	{
+		return "vandaag is woensdag";
+	}
+	elseif (strpos($day, 'Thurs') !== false)
+	{
+		return "vandaag is donderdag";
+	}
+	elseif (strpos($day, 'Fri') !== false)
+	{
+		return "vandaag is vrijdag";
+	}
+	elseif (strpos($day, 'Sat') !== false)
+	{
+		return "vandaag is zaterdag";
+	}
+	else
+	{
+		return "vandaag is zondag";
+	}
+}
+*/
 
 function login($link) {
 	$error = ""; //Variable for storing our errors.
