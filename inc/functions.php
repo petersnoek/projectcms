@@ -1,25 +1,7 @@
 <?php
 session_start();
 
-// template should have a month_row block for every month row,
-// template should have a month_cell block which will be repeated 24 times
-// array should have 24 values.
-// if you want to make 1 cell pink, then pass the number of that cell as $redindex (first cell = 0)
-function AddMonthrowToTemplate($tpl, $array, $redindex = -1) {
 
-    $tpl->newBlock('month_row');
-
-    for ($i=0; $i<=23; $i++) {
-        $tpl->newBlock('month_cell');
-
-        if ( $i == $redindex )
-            $tpl->assign('class', 'monthday red');
-        else
-            $tpl->assign('class', 'monthday');
-
-        $tpl->assign('cell', $array[$i] );
-    }
-}
 
 function CreateArrayWith24Dates($format = 'd/m') {
     // create array with 24 days

@@ -13,30 +13,35 @@
 <div class="row">
 <div class="top-bar">
 		  <div class="top-bar-left">
-			<ul class="menu" data-dropdown-menu>
+			<ul class="dropdown menu" data-dropdown-menu>
 				<li class="menu-text">ProjectCMS</li>
-				<li><a href="projects.php">Projecten</a></li>
+				<li>
+					<a href="#">Projecten</a>
+					<ul class="menu">
+						<li><a href="projects.php">Projecten, onder elkaar</a></li>
+						<li><a href="Projectssideways.php">Projecten, naast elkaar</a></li>
+					</ul>
+				</li>
 				<li><a href="members.php">Deelnemers</a></li>
 				<li><a href="project_new.php">Nieuw Project</a></li>
 			</ul>
-			</li>
 		  </div>
 		  <div class="top-bar-right">
 			<ul class="dropdown menu" data-dropdown-menu>
-			  <li>
-				<a href="#"><i class="fa fa-user" aria-hidden="true">
-				Account
-				</i></a>
-				<ul class="menu vertical">
-					<li><a href="Member_New.php">Registreren</a></li>
-					<!-- START BLOCK : logged_in -->
-					<li><a href="logout.php">Logout</a></li>
-					<!-- END BLOCK : logged_in --> 
-					<!-- START BLOCK : logged_out -->
-					<li><a href="login.php">Login</a></li>
-					<!-- END BLOCK : logged_out --> 
-				</ul>
-					</li>
+				<li>
+					<a href="#"><i class="fa fa-user" aria-hidden="true">
+					Account
+					</i></a>
+					<ul class="menu vertical">
+						<li><a href="Member_New.php">Registreren</a></li>
+						<!-- START BLOCK : logged_in -->
+						<li><a href="logout.php">Logout</a></li>
+						<!-- END BLOCK : logged_in --> 
+						<!-- START BLOCK : logged_out -->
+						<li><a href="login.php">Login</a></li>
+						<!-- END BLOCK : logged_out --> 
+					</ul>
+				</li>
 				</ul>
 			</div>
 		</div>
